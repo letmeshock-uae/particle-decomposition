@@ -107,7 +107,7 @@ export function createPanel(ps: ParticleSystem, fo: FrameOverlay, act: PanelActi
     const val = parseFloat(t.value)
 
     if (paramKeys.has(key)) {
-      ;(ps.params as Record<string, number>)[key] = val
+      ;(ps.params as any)[key] = val
     }
     if (key === 'frameCount')   { frameCount = val }
     if (key === 'frameThick')   { fo.thickness = val; fo.render() }
@@ -131,7 +131,7 @@ export function createPanel(ps: ParticleSystem, fo: FrameOverlay, act: PanelActi
       btn.classList.add('active')
 
       if (paramKeys.has(key)) {
-        ;(ps.params as Record<string, number>)[key] = val
+        ;(ps.params as any)[key] = val
         if (key === 'step') {
           clearTimeout(rebuildTimer)
           rebuildTimer = window.setTimeout(() => ps.rebuild(), 100)
